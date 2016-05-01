@@ -1,14 +1,41 @@
 <h1>Hello there, <%= @user.name %>!</h1>
+
+
+
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="row">
       <div class="col-lg-2 ">
+        <h3>Your Planned Trips</h3>
     <table class="table-bordered">
         <tr>
             <th>Destination</th>
             <th>Travel Start Date</th>
             <th>Travel End Date </th>
             <th>The plan</th>
+
+        </tr>
+        <% @trips.each do |x| %>
+        <tr>
+
+            <td><%= x.destination %></td>
+            <td><%= x.start_date.to_formatted_s(:long)    %></td>
+            <td><%= x.end_date.to_formatted_s(:long) %></td>
+            <td><%= x.description %></td>
+
+        </tr>
+        <% end %>
+    </table>
+    </div>
+    </div>
+    <h2>Other User's Travel Plans</h2>
+    <table class="table-bordered">
+        <tr>
+            <th>Name</th>
+            <th>Destination</th>
+            <th>Travel Start Date </th>
+            <th>Travel End Date </th>
+            <th>Do you want to join?</th>
 
         </tr>
         <% @trips.each do |x| %>
@@ -22,6 +49,8 @@
         </tr>
         <% end %>
     </table>
-    </div>
-    </div><br>
+    <%= link_to "Add Travel Plan", new_trip_path %>
+    <br>
+    <%= link_to "Log out", @current_user, method: "delete" %>
+
 </div>
