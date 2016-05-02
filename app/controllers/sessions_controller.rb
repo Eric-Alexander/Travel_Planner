@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
       redirect_to user
     else
       flash[:danger] = "Invalid username/password combination"
-      redirect_to :background
+      redirect_to :back
     end
   end
 

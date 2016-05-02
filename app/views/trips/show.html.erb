@@ -1,2 +1,16 @@
 <h1>Trips#show</h1>
 <p>Find me in app/views/trips/show.html.erb</p>
+
+<h2> <%= @trip.destination %> </h2>
+
+<h3> Planned By: <%= @trip.user.name %> </h3>
+
+<h3> Description: <%= @trip.description %> </h3>
+
+<h3> Travel Date From: <%= @trip.start_date %> </h3>
+
+<h3> Travel Date To: <%= @trip.end_date %> </h3>
+
+
+<%= link_to "Home", user_path(current_user) %>
+<%= link_to "Log out", sessions_logout_path, method: "delete" %>

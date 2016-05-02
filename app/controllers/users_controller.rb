@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @users = User.all
-    @trips = Trip.all
+    @other_trips = Trip.all.where.not(user_id: @user )
   end
 
 
@@ -17,7 +17,7 @@ class UsersController < ApplicationController
           flash[:success] = "Welcome to the muthafuckin' club."
           redirect_to @user
       else
-          render 'main'
+          render :new
       end
   end
   def destroy

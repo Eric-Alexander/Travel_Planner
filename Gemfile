@@ -21,6 +21,7 @@ gem 'bootstrap-sass'
 gem 'rails-footnotes'
 gem 'momentjs-rails'
 gem 'bootstrap-datepicker-rails'
+gem 'validates_timeliness', '~> 4.0'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor', group: :production

@@ -15,17 +15,19 @@
             <th>The plan</th>
 
         </tr>
-        <% @trips.each do |x| %>
+        <% if @user.trips.any? %>
+        <% @user.trips.each do |x| %>
         <tr>
 
-            <td><%= x.destination %></td>
-            <td><%= x.start_date.to_formatted_s(:long)    %></td>
-            <td><%= x.end_date.to_formatted_s(:long) %></td>
+            <td><a href="/trips/<%= x.id%>" ><%= x.destination %></a></td>
+            <td><%= x.start_date   %></td>
+            <td><%= x.end_date %></td>
             <td><%= x.description %></td>
 
         </tr>
         <% end %>
     </table>
+    <% end %>
     </div>
     </div>
     <h2>Other User's Travel Plans</h2>
@@ -38,19 +40,22 @@
             <th>Do you want to join?</th>
 
         </tr>
-        <% @trips.each do |x| %>
+        <% if @other_trips.any?  %>
+        <% @other_trips.each do |x| %>
         <tr>
 
-            <td><%= x.destination %></td>
+            <td><%= x.user.name %></td>
+            <td><a href="/trips/<%= x.id%>" ><%= x.destination %></a></td>
             <td><%= x.start_date %></td>
             <td><%= x.end_date %></td>
-            <td><%= x.description %></td>
+            <td><%= link_to "Join", '#' %>
 
         </tr>
         <% end %>
     </table>
+    <% end %>
     <%= link_to "Add Travel Plan", new_trip_path %>
     <br>
-    <%= link_to "Log out", @current_user, method: "delete" %>
+    <%= link_to "Log out", sessions_logout_path, method: "delete" %>
 
 </div>

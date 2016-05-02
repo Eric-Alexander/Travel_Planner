@@ -1,7 +1,7 @@
 <h1>Trips#new</h1>
 <p>Find me in app/views/trips/new.html.erb</p>
 
-<%= form_for(@trip) do |f| %>
+<%= form_for ( @trip) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
 <%= f.label :destination %>
@@ -11,7 +11,7 @@
 <%= f.text_area :description, class: 'form-control' %>
 
 <%= f.label :start_date %>
-<%= f.date_field :start_date, class: 'form-control' %>
+<%=f.date_field :start_date, class: 'form-control'  %>
 
 <%= f.label :end_date, "Confirmation" %>
 <%= f.date_field :end_date, class: 'form-control' %><br>
