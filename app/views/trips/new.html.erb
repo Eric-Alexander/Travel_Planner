@@ -1,7 +1,9 @@
 <h1>Trips#new</h1>
 <p>Find me in app/views/trips/new.html.erb</p>
+<div class = "row">
+  <div class ="col-md-5">
 
-<%= form_for ( @trip) do |f| %>
+<%= form_for (@trip) do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
 <%= f.label :destination %>
@@ -19,6 +21,7 @@
 <%= f.submit "Add", class: "btn btn-success" %>
 
 <% end %>
-
+</div>
+</div>
 <%= link_to "Home", user_path(current_user) %>
 <%= link_to "Log out", sessions_logout_path, method: "delete" %>

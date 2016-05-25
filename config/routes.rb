@@ -2,11 +2,14 @@ Rails.application.routes.draw do
 
   post   'login'   => 'sessions#login'
   delete 'sessions/logout' => 'sessions#destroy'
+  get 'joins/:id/join' => 'joins#join'
+  get 'joins/:id/cancel' => 'joins#cancel'
 
   root 'users#new'
   resources :users, only: [:main, :show, :new, :create]
-  resources :trips, only: [:show, :new, :create]
+  resources :trips, only: [:show, :new, :create, :join]
 
+  resources :joins, only: [:join, :cancel]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

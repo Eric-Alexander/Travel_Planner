@@ -15,19 +15,18 @@
             <th>The plan</th>
 
         </tr>
-        <% if @user.trips.any? %>
-        <% @user.trips.each do |x| %>
+        <% @my_trips.each do |x| %>
         <tr>
 
-            <td><a href="/trips/<%= x.id%>" ><%= x.destination %></a></td>
-            <td><%= x.start_date   %></td>
-            <td><%= x.end_date %></td>
-            <td><%= x.description %></td>
+            <td><a href="/trips/<%= x.id%>" ><%= x.trip.destination %></a></td>
+            <td><%= x.trip.start_date.strftime("%B %d %Y")%></td>
+            <td><%= x.trip.end_date.strftime("%B %d %Y") %></td>
+            <td><%= x.trip.description %></td>
 
         </tr>
         <% end %>
     </table>
-    <% end %>
+
     </div>
     </div>
     <h2>Other User's Travel Plans</h2>
@@ -46,9 +45,9 @@
 
             <td><%= x.user.name %></td>
             <td><a href="/trips/<%= x.id%>" ><%= x.destination %></a></td>
-            <td><%= x.start_date %></td>
-            <td><%= x.end_date %></td>
-            <td><%= link_to "Join", '#' %>
+            <td><%= x.start_date.strftime("%B %d %Y") %></td>
+            <td><%= x.end_date.strftime("%B %d %Y") %></td>
+            <td><a href="/joins/<%= x.id %>/join" role="button">Join</a></td>
 
         </tr>
         <% end %>
