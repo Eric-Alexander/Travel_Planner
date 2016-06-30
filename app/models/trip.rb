@@ -1,5 +1,6 @@
 class Trip < ActiveRecord::Base
   belongs_to :user
+  has_many :travellers, through: :joins, source: :user
 
 
   validates :destination, presence: true

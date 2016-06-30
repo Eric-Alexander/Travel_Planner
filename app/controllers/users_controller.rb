@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @other_trips = Trip.all.where.not(user_id: @user)
-    @my_trips = Join.where(user: current_user)
+    @my_trips = Join.where(user: current_user).joins(:trip)
   end
 
   def create

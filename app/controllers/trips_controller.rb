@@ -16,7 +16,7 @@ class TripsController < ApplicationController
       # puts "wakka wakka"
       # puts @trip.errors.full_messages
 
-      redirect_to :back
+      render :new
     end
   end
   # def join

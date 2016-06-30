@@ -1,6 +1,7 @@
 class JoinsController < ApplicationController
   def join
     Join.create(user_id: session[:user_id], trip_id: params[:id])
+    flash[:success] = "You have joined the trip!"
     redirect_to :back
   end
   def cancel
