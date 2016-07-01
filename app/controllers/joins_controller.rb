@@ -1,8 +1,6 @@
 class JoinsController < ApplicationController
   def join
     @join = Trip.find(params[:join])
-    puts "==========================="
-    puts params[:join]
     joins = current_user.joins.create(trip_id: @join.id, user_id: current_user.id)
     if joins.save
       flash[:success] = "You have joined the trip!"
