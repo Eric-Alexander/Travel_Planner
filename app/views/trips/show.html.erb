@@ -1,28 +1,31 @@
-<h1>Trips#show</h1>
+<h2>Trip Details</h2>
 
-<h2> <%= @trip.destination %> </h2>
+<dl class = "dl-horizontal">
+  <dt><strong>Destination:</strong></dt>
+  <dd><%= @trip.destination %></dd>
+  <dt><strong>Organized By:</strong></dt>
+  <dd><%= @trip.user.name %></dd>
+  <dt><strong>The Plan:</strong></dt>
+  <dd><%= @trip.description %></dd>
+  <dt><strong>Start Date:</strong></dt>
+  <dd><%= @trip.start_date.strftime("%B %d %Y") %></dd>
+  <dt><strong>End Date:</strong></dt>
+  <dd><%= @trip.end_date.strftime("%B %d %Y") %></dd>
+</dl>
 
-<h3> Planned By: <%= @trip.user.name %> </h3>
-
-
-
-
-
-<h3> Description: <%= @trip.description %> </h3>
-
-<h3> Travel Date From: <%= @trip.start_date %> </h3>
-
-<h3> Travel Date To: <%= @trip.end_date %> </h3>
-
-<h3> Other Users Joining the Trip:</h3>
+<h4> Other Users Joining the Trip:</h4>
 
 <% @joins.each do |join| %>
   <ul>
-    <h4><li><%= join.user.name %></li></h4>
+    <h5><li><%= join.user.name %></li></h5>
   </ul>
+  <% end %>
+  <% if current_user.user_already_added?(@trip.id, current_user.id) %>
+    <%= link_to "Join Trip", add_user_path(user: current_user, join: @trip.id),
+                  class: "btn btn-primary",
+                  method: :post %>
+  <% else %>
 
-<% end %>
+      <button class ="btn btn-danger"><a href="/joins/<%= @trip.id %>/cancel" >Cancel</a></button>
 
-
-<%= link_to "Home", user_path(current_user) %>
-<%= link_to "Log out", sessions_logout_path, method: "delete" %>
+  <% end %>

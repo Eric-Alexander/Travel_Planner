@@ -3,22 +3,21 @@
 
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <div class="row">
-      <div class="col-lg-2 ">
+  <div class="col-md-10">
+
         <h3>Your Planned Trips</h3>
-    <table class="table-bordered">
+    <table class="table table-striped">
         <tr>
             <th>Destination</th>
             <th>Travel Start Date</th>
             <th>Travel End Date </th>
-            <th>The plan</th>
+            <th>Description</th>
 
         </tr>
         <% @my_trips.each do |x| %>
         <tr>
 
-            <td><a href="/trips/<%= x.id%>" ><%= x.trip.destination %></a></td>
+            <td><a href="/trips/<%= x.trip.id%>" ><%= x.trip.destination %></a></td>
             <td><%= x.trip.start_date.strftime("%B %d %Y")%></td>
             <td><%= x.trip.end_date.strftime("%B %d %Y") %></td>
             <td><%= x.trip.description %></td>
@@ -27,12 +26,11 @@
         <% end %>
     </table>
 
-    </div>
-    </div>
+
     <h2>Other User's Travel Plans</h2>
-    <table class="table-bordered">
+    <table class="table table-striped">
         <tr>
-            <th>Name</th>
+            <th>Organizer</th>
             <th>Destination</th>
             <th>Travel Start Date </th>
             <th>Travel End Date </th>
@@ -47,14 +45,17 @@
             <td><a href="/trips/<%= x.id%>" ><%= x.destination %></a></td>
             <td><%= x.start_date.strftime("%B %d %Y") %></td>
             <td><%= x.end_date.strftime("%B %d %Y") %></td>
-            <td><a href="/joins/<%= x.id %>/join" role="button">Join</a></td>
+            <% if current_user.user_already_added?(x.id, current_user.id) %>
+            <td><%= link_to "Join Trip", add_user_path(user: current_user, join: x.id),
+                          class: "btn btn-primary btn-xs",
+                          method: :post %></td>
+            <% else %>
+             <td><p>Already Joined</p></td>
+             <% end %>
 
         </tr>
         <% end %>
     </table>
     <% end %>
-    <%= link_to "Add Travel Plan", new_trip_path %>
-    <br>
-    <%= link_to "Log out", sessions_logout_path, method: "delete" %>
 
 </div>

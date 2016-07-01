@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   delete 'sessions/logout' => 'sessions#destroy'
   get 'joins/:id/join' => 'joins#join'
   get 'joins/:id/cancel' => 'joins#cancel'
-
+  post 'add_user' => 'joins#join'
+  delete 'destroy_rsvp' => 'joins#cancel'
   root 'users#new'
   resources :users, only: [:main, :show, :new, :create]
   resources :trips, only: [:show, :new, :create, :join]
